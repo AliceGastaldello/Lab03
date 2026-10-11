@@ -1,4 +1,6 @@
 from deposito_strumenti import DepositoStrumenti
+from deposito_strumenti import Strumento
+from deposito_strumenti import Prestito
 from datetime import datetime
 
 def menu():
@@ -21,6 +23,13 @@ def main():
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
             # TODO: Aggiorna responsabile nel sistema
+            deposito.aggiungi_responsabile(nuovo_responsabile)
+            print("Responsabile aggiunto!")
+            print("I responsabili sono: ")
+            lista_res=[]
+            for resp in deposito.lista_responsabili:
+                lista_res.append(resp)
+            print(lista_res)
 
         elif scelta == "2":
             while True:
@@ -41,12 +50,13 @@ def main():
                 print("Errore: inserire valori numerici validi per anno e valore.")
                 continue
             strumento = deposito.aggiungi_strumento(tipo, marca, anno_acquisto, valore)
-            print(f"Strumento aggiunto: {strumento}")
+            print(f"Strumento aggiunto: {strumento.tipo}")
 
         elif scelta == "4":
             strumenti_ordinati = deposito.strumenti_ordinati_per_marca()
             for s in strumenti_ordinati:
                 print(f'- {s}')
+
 
         elif scelta == "5":
             id_strumento = input("ID strumento: ")
